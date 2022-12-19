@@ -1,0 +1,415 @@
+---
+title: "R Foundations"
+author: "Adejumo Ridwan Suleiman"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+# R Variables
+- You can take variables as containers for storing values of data.  
+- Variables are created using the assignment operator `<-`.  
+- Example 
+```{r}
+country <- "Nigeria"
+age <- 62
+```
+- Text values are surrounded by double or single quotes while numeric are not surrounded by quotes.  
+- The values of variables are called by calling the name of the variables.  
+```{r}
+country
+age
+```
+- You can also print variables with the print function in R.  
+```{r}
+print(country)
+print(age)
+```
+- The `c()` also known as the combine function lets you assign two or more values to a variable in R.  
+```{r}
+vowel_sounds <- c("a","e","i","o","u")
+prime_numbers <- c(1,3,5,11)
+```
+
+- You can assign multiple variables in R.  
+```{r}
+State <- Capital <- "Kano"
+State
+Capital
+```
+## Variable Naming
+You can name a variable any name you want buy make sure it is meaningful and descriptive of the value you are assigning to the variable and take the following into considerations when naming variables.  
+- A variable must start with characters`(a-z)` and can be a combination of characters`(a-z)`,underscores`(_)`,digits and periods`(.)`.  
+- A variable can not start with digits or underscores`(_)`.  
+- A variable can not start with a period followed by a digit`(.4).  
+- Variables in R are case sensitive i.e `Age` and `age` are not the same variable.
+- Special words in R such as `(TRUE, FALSE, NULL,if,else,while,for)` and so on can't be used as variables.
+```{r}
+#Valid Variable Names
+firstcountry = "Nigeria"
+second_country = "Congo"
+thirdCountry = "Sudan"
+FOURTHCOUNTRY = "Somalia"
+country5 = "South Africa"
+country.6 = "Algeria"
+.country7 = "Kenya"
+
+#Invalid Variable Names
+#8variable <- "Morocco"
+#variable-9 <- "Tunisia"
+#variable 10 <- "Egypt"
+#_variable_11 <- "Rwanda"
+#variable@12 <- "Madagascar"
+#FALSE <- "Ghana"
+```
+
+##Comments
+- Comments are used in explaining blocks of code
+- They are usually lines ignored anytime an R script is executed and begins with a `#`
+```{r}
+#This is a comment
+This is not a comment
+```
+
+
+
+# Arithmetic and Logical Operations in R
+## Arithmetic Operators
+- addition`(+)`  
+- subtraction `(-)`  
+- multiplication`(*)`  
+- division`(/)`  
+- exponent`(^)`  
+- Integer division`(%/%)`  
+- Remainder division`(%%)`
+```{r}
+4 + 5
+
+a = 8
+b = 9
+
+z = a + b
+
+y <- x <- z
+
+u = (a + b)*(y/x) + z^5 - 10000
+
+u
+
+8%%2
+9%%2
+
+8%/%2
+9%/%2
+```
+
+
+## Comparison Operators
+- Equal to`(==)`    
+- Not equal to `(!=)`  
+- Greater than`(>)`  
+- Less than `(<)`  
+- Less than or equal to `(<=)`  
+- Greater than or equal to `(>=)`  
+```{r}
+(5*4/3) > (4/1^0.5)
+
+a = 5
+b <- a >= (4.5-11.5)
+b == FALSE
+
+((2*3)>(5/2)) == ((4-4)>(0^-4))
+```
+
+
+## Logical Operators
+- AND`(&)`  
+- OR`(|)`  
+- NOT`(!)`  
+```{r}
+(4 > 5) & (6 < 9)
+(4 > 5) | (6 < 9)
+
+((4 > 5) & (6 < 9)) | ((4 > 5) | (6 < 9))
+((4 > 5) & (6 < 9)) & ((4 > 5) | (6 < 9))
+```
+
+
+
+## Other Operators
+- Create series or sequences of numbers`(:)`  
+- Find out if an element belongs to a vector`(%in%)`  
+
+```{r}
+4 < 5
+5 == 5
+
+seq = 1:20
+seq
+
+age <- 20
+age < 50
+
+vowel_sounds <- c("a","e","i","o","u")
+"a" == vowel_sounds
+"c" %in% vowel_sounds
+
+
+```
+
+
+# Data Types
+- In R Programming variables can be stored as different data types.  
+- These data types are not declared and automatically set to the variables depending on the type of values assigned to it.  
+- In R there are 5 major data types,
+numeric 
+integer
+complex
+character
+logical
+- In this workshop, we will treat just numeric, integer, character and logical. The rest are beyond the scope of this class.
+numeric`(1.3,2.4,5)`
+```{r}
+a = 45
+b = 4.3
+a
+b
+```
+
+integer`(2L,5L,6L)`
+```{r}
+c = 3L
+d = 56L
+e = 45.5L #not an integer and will return error because it contains decimal 
+```
+
+character`("apple","boy")`
+```{r}
+name = "Joy"
+sex = "Male"
+```
+
+logical`(TRUE or FALSE)`
+```{r}
+x = TRUE
+y = (5<1)
+```
+
+- class of a data type can be checked using the class function 
+```{r}
+class(a)
+class(b)
+class(c)
+class(d)
+class(e)
+class(x)
+class(y)
+```
+
+
+# Data Structures
+- A data structure is a collection of data types, these data types can be similar or different from each other.  
+- A data is divided into 6 major types;  
+Vectors  
+Lists  
+Matrices  
+Arrays  
+Data Frames  
+Factors  
+
+## Vectors
+- Vectors contain items or values of the same data type.    
+- These values are usually combined with the `c()` function separated by `,`.      
+```{r}
+#vector of character values
+colours <- c("blue","green","yellow","black","white")
+colours
+#vector of numeric values
+prime_number <- c(1,3,5,7,11,13)
+prime_number
+#vector of logical values
+logical <- c(TRUE, FALSE)
+logical
+```
+- You can check for the lenght of vector using the `length()` function.
+```{r}
+names <- c("Joy","John","Jamal")
+length(names)
+```
+- You can sort a vector with the `sort()` function.
+```{r}
+numbers <- c(14,3,5,6,1,0,13,10,9)
+sort(numbers)
+```
+- You can access a vector by its index number
+```{r}
+fruits <- c("Bananana", "Orange","Water Melon","PawPaw")
+#Access single elements
+fruits[2]
+#Using negative numbers for index to access all items except the one specified
+fruits[-1]
+```
+- You can also access single elements
+```{r}
+#Access multiple elements
+fruits[c(2,3)]
+```
+- 
+- You can also generate a sequenced vector
+```{r}
+#Generate sequenced vectors
+numbers <- seq(from = 0, to = 100, by = 20)
+numbers
+```
+- You can change the value of an item in a vector using it's index number.
+```{r}
+#changing the value of an item in a vector
+fruits[2]="Lemon"
+fruits
+```
+
+## Lists
+ Unlike the vectors, lists contain many different data types.
+- List are created using the `list()` function.
+```{r}
+#create a list of different data type
+my_list <- list("Kano", "Gombe","Bauchi", TRUE,8,20)
+#accessing the items in a list
+my_list[3]
+my_list[1]
+```
+- You can change the value of an item in a list
+```{r}
+#Changing the value of an item in a list
+my_list[4] <- "girl"
+```
+- You can add an item to the end of alist with the `append()` function
+```{r}
+append(my_list, "horse")
+```
+- You can remove list items by using negative indexing
+```{r}
+another_list <- my_list[-1]
+```
+
+## Matrices
+- A matrix is a two dimensional data made up of columns and rows
+- A matrix is created with the `matrix()` function
+```{r}
+#create a simple 2x2 matrix of numbers
+a_matrix <- matrix(c(1,2,3,4), nrow = 2, ncol = 2)
+a_matrix
+```
+- A matrix of strings can also be created
+```{r}
+string_matrix <- matrix(c("blue","white","red","green"), nrow = 2, ncol = 2)
+string_matrix
+```
+- You can access matrix items just like in lists and vectors with square brackets
+```{r}
+prime <- matrix(c(2,3,5,7,11,13,17,19,23))
+#access row 2 column 3
+prime[2,3]
+#access only column 3
+prime[,3]
+#access only row 2
+prime[2,]
+#access more than 1 row
+prime[c(2,3),]
+```
+- You can add rows and columns to a matrix with the `rbind()` and `cbind()` function respecively.
+```{r}
+#add rows
+newMatrix <- rbind(prime, c(29,31,37))
+newMatrix
+#add columns
+newMatrix <- cbind(prime, c(29,31,37))
+```
+- You can check for the number of rows and columns with the `dim()` function
+```{r}
+dim(a_matrix)
+```
+
+## Arrays
+- Unlike matrices, Arrays have more than two dimensions.
+- The `array()` function is used to create an array.
+```{r}
+a_vector <- c(1:30)
+an_array <- array(a_vector, dim = c(5,2,3))
+an_array
+```
+- Array items can also be accessed by indexing with the squaed brackets
+```{r}
+an_array[5,2,2]
+```
+- Dimension of an array can also be checked with the `dim()` function
+```{r}
+dim(an_array)
+```
+
+## Data Frames
+- Data Frames are data displayed in tabular format
+- A data frame consists of columns of different data types, but each column contain values of the same data types.
+- Data frames can be created with the `data.frame()` function.
+```{r}
+workers <- data.frame(
+  name = c("Joy","John","Rebecca"),
+  age = c(43,21,45),
+  married = c(TRUE,FALSE, FALSE)
+)
+workers
+```
+- You can summarize a data frame using the `summary()` function
+```{r}
+summary(workers)
+```
+- Items in a dataframe can be assigned with square brackets `[]`,double brackets`[[]]` or dollar signs`$`.
+```{r}
+workers[2]
+workers[["married"]]
+workers$name
+workers
+```
+- You can add new rows and columns to the data using the `rbind()` and `cbind()` functions respectively.
+```{r}
+#add another worker
+new_workers_data <- rbind(workers, c("Johnson",49,FALSE))
+new_workers_data
+#add another variable
+new_workers_var <- cbind(workers, Children = c(5,1,8))
+new_workers_var
+```
+- Rows can be removed with negative indexing
+```{r}
+new_workers_var[-3,-2]
+```
+- You can combine two dataframes with the `cbind()` function
+```{r}
+# combine by row
+cbind(new_workers_data, new_workers_data)
+#combine by columns
+rbind(new_workers_data, new_workers_data)
+```
+
+## Factors
+- Factors are used on categorical data
+- Examples of factors are Sex - Male/Female, Yes/No,
+- Factors can be created using the `factor()` function
+```{r}
+sex <- factor(c("Male","Female","Female","Female"))
+sex
+```
+- You can get the levels using the `levels()` function
+```{r}
+levels(sex)
+```
+- You can set the levels using the levels argument in the `factor()`
+```{r}
+Marital_Status <- factor(c("Married","Divorced","Single"))
+levels(Marital_Status)
+```
+
+- Factors can be accessed and changed using the square brackets
+```{r}
+Marital_Status[2]
+Marital_Status[-1]
+```

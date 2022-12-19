@@ -1,0 +1,86 @@
+---
+title: "Data Analysis"
+author: "Adejumo Ridwan Suleiman"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+## Importing and Exporting Data
+- Before a data can be used in R, it needs to be imported and saved as a variable.
+- A data is imported using the `read.csv()` function.
+- The data will be working with is the sales data
+```{r}
+sales <- read.csv("C:/Users/abu aisha/Documents/R-Workshop-17-18-12-2022/sales.csv")
+```
+- The `read.csv()` takes the file path of the data as an argument.
+- Data can also be exported using the `write.csv()` function.
+- let's subset some columns in the data and export.
+```{r}
+subset <- sales[,c(2,3,4)]
+write.csv(subset, "subset.csv")
+```
+
+# Analyzing Data 
+- You can get a view of the whole data on a new tab using the `View()` function or use the`head()` function to get the first 5 rows.
+```{r}
+head(sales)
+View(sales)
+```
+
+- You can check the data types of your data using the `str()` function.
+```{r}
+str(sales)
+```
+- You can check for the descriptive statistics using the `summary()` function
+```{r}
+summary(sales)
+```
+- Let's find out the total amount of all sales made.
+```{r}
+sum(sales["total"])
+```
+- Total payment by cash
+```{r}
+sum(sales[sales$payment == "Cash",]["total"])
+```
+- Most expensive item by unit price
+```{r}
+sales[sales$unit_price == 66.62,]
+```
+- Total sales made in each warehouse
+```{r}
+#Central
+sum(sales[sales["warehouse"] == "Central",]["total"])
+#North
+sum(sales[sales["warehouse"] == "North",]["total"])
+#West
+sum(sales[sales["warehouse"] == "West",]["total"])
+```
+
+# Visualization
+- Data visualization are performed in R using the
+ggplot2 package.
+- Let's find the frequency of sales made by warehouse.
+```{r}
+library(ggplot2)
+qplot(x = warehouse,y = total, fill = warehouse, data = sales, geom = "col")
+```
+- Let's also find the total sales made by each client from the various warehouses.
+```{r}
+qplot(x = warehouse, 
+      y = total, 
+      fill = client_type, 
+      data = sales, 
+      geom = "col")
+```
+- Let's also see the payment system with the highest transactions.
+```{r}
+qplot(x = payment, 
+      y = total, 
+      fill = client_type, 
+      data = sales, 
+      geom = "col")
+```
+
+
+
